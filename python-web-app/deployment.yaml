@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-python-webapp-deployment
+  labels:
+    app: python-webapp-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: python-webapp-deployment
+  template:
+    metadata:
+      labels:
+        app: python-webapp-deployment
+    spec:
+      containers:
+      - name: python-webapp-container
+        image: ashutoshkumar999/python-sample-app-demo:v1 #Push the Image to a Registry first before creating deployment (if not already pushed),If the image is built locally but not pushed, push it to a registry accessible to your cluster nodes.
+        ports:
+        - containerPort: 8000
